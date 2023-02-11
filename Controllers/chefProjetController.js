@@ -1,9 +1,8 @@
-const express = require ('express')
-const chefProjet = require('../Models/chefProjet.js')
-
+const ChefProjet = require('../Models/chefProjet')
 
 exports.afficher = function (req, res) {
+  
 
-
-  res.send(chefProjet.findAll())
+  res.send(ChefProjet.getAttributes())
+  console.log("i am testing");
 }

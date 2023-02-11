@@ -1,10 +1,13 @@
-const sequelize = require('sequelize')
+const Sequelize = require('sequelize')
+const ChefProjet = require('../Models/chefProjet')
 
 const Db = require("../db/dbConnect.js")
 
 
-const {DataTypes} = sequelize
-const User = Db.define('user', {
+const {DataTypes} = Sequelize
+class Utlisateur extends Sequelize.Model {}
+
+Utlisateur.init({
     id : {
         type : DataTypes.INTEGER.UNSIGNED,
         primaryKey : true,
@@ -20,7 +23,7 @@ const User = Db.define('user', {
         // allowNull :false
     },
     numTel : {
-        type : DataTypes.NUMBER,
+        type : DataTypes.DECIMAL,
         // allowNull :false
     },
     password : {
@@ -30,7 +33,13 @@ const User = Db.define('user', {
     cin : {
         type : DataTypes.STRING,
         // allowNull :false
+    }},{
+        modelName: 'Utilisateur',
+        tableName: 'utilisateur',
+        sequelize: Db,
     }
-})
+)
 
-module.exports = User
+
+
+module.exports = Utlisateur

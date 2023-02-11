@@ -1,3 +1,3 @@
 const { Sequelize } = require('sequelize')
 
-module.exports = new Sequelize('userTest','root','password',{dialect:'mysql',host:'localhost'})
+module.exports = new Sequelize('PFE_DB','root','',{dialect:'mysql',host:'localhost'})
