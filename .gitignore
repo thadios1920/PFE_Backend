@@ -1,1 +1,3 @@
 /node_modules
+# Fichier envirennement contenant les données de connexion a la BD et port de nodeJS
+/.env

@@ -2,7 +2,11 @@ const express = require ('express')
 const app = express()
 const morgan = require('morgan')
 const DB = require('./db/dbConnect')
-const port = 8080
+require('dotenv/config')
+
+
+const SERVER_PORT = process.env.SERVER_PORT
+
 app.use(express.json()) // avoir la possibiliter de traiter le contenue JSON de requette
 
 // Affichage au console de chaque requette
@@ -16,11 +20,12 @@ const projetRouter = require('./Routes/projetRouter')
 app.use('/chefProjet',chefProjetRouter)
 app.use('/projet',projetRouter)
 
-
+// Connexion a la base de données 
 DB.sync()
 .then(console.log("database connected"))
 .catch(err=>{console.log(err);})
 
-app.listen(port,()=>{
-    console.log("Server Started : http://localhost:"+port);
+// Connexion au serveur NodeJS
+app.listen(SERVER_PORT,()=>{
+    console.log("Server Started : http://localhost:"+SERVER_PORT);
 })

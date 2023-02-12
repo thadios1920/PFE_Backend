@@ -1,12 +1,13 @@
 const sequelize = require('sequelize')
 const Utlisateur = require('./utilisateur.js')
-
 const Db = require("../db/dbConnect.js")
-
-
 const {DataTypes} = sequelize
 
-class ChefProjet extends Utlisateur {}
+
+const Projet = require('../Models/projet');
+
+
+class ChefProjet extends sequelize.Model {}
 ChefProjet.init (
     {
         projet : {
@@ -22,6 +23,7 @@ ChefProjet.init (
 )
 
 
+ChefProjet.hasMany(Projet, { onDelete: 'RESTRICT' });
 
 
 module.exports = ChefProjet
