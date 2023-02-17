@@ -22,6 +22,10 @@ Utlisateur.init({
         type : DataTypes.STRING,
         // allowNull :false
     },
+    imageURL : {
+        type : DataTypes.STRING,
+        // allowNull :false
+    },
     numTel : {
         type : DataTypes.DECIMAL,
         // allowNull :false
