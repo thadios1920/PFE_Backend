@@ -1,30 +1,39 @@
 const Sequelize = require('sequelize')
+
 const Db = require("../db/dbConnect.js")
+
+
 const {DataTypes} = Sequelize
 
-const Projet = require('./projet.js');
+const Etage = require("./etage.js");
 
-class Chantier extends Sequelize.Model {}
-Chantier.init({
-    nom: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING },
-    date_debut: { type: DataTypes.DATE },
-    date_fin: { type: DataTypes.DATE },
+const Chantier = Db.define("Chantier", {
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
-  {
-    modelName: 'Chantier',
-    tableName: 'Chantier',
-    sequelize: Db,
-}
-  );
+  nom: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  date_debut: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  date_fin: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+});
 
+Chantier.hasMany(Etage, {
+  onDelete: "CASCADE",
+});
 
-  // Chantier.belongsTo(Projet, { onDelete: 'SET_NULL', onUpdate: 'CASCADE' });
-
-  Chantier.associate = (models) => {
-    Chantier.belongsTo(models.Projet, {
-     onDelete: 'SET NULL', onUpdate: 'CASCADE' 
-    });
-}
-  
 module.exports = Chantier;

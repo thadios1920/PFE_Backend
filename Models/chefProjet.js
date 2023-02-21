@@ -10,10 +10,36 @@ class ChefProjet extends Utlisateur {
 }
 ChefProjet.init(
   {
-    projet: {
-      type: DataTypes.STRING,
+    id : {
+      type : DataTypes.INTEGER.UNSIGNED,
+      primaryKey : true,
+      autoIncrement : true,
+      allowNull :false,
+  },
+  nom : {
+      type : DataTypes.STRING,
       // allowNull :false
-    },
+  },
+  prenom : {
+      type : DataTypes.STRING,
+      // allowNull :false
+  },
+  imageURL : {
+      type : DataTypes.STRING,
+      // allowNull :false
+  },
+  numTel : {
+      type : DataTypes.DECIMAL,
+      // allowNull :false
+  },
+  password : {
+      type : DataTypes.STRING,
+      // allowNull :false
+  },
+  cin : {
+      type : DataTypes.STRING,
+      // allowNull :false
+  },
   },
   {
     modelName: "chefProjet",
@@ -22,7 +48,6 @@ ChefProjet.init(
   }
 );
 
-ChefProjet.belongsTo(Utlisateur);
 
 ChefProjet.hasMany(Projet, { onDelete: "RESTRICT" });
 

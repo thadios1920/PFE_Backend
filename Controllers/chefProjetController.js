@@ -1,6 +1,13 @@
 const ChefProjet = require("../Models/chefProjet");
 const Projet = require("../Models/projet");
 
+// Retourne True si un chef existe
+async function chefExiste(chefProjetID) {
+  const chefProjet = await ChefProjet.findByPk(chefProjetID);
+
+  return chefProjet != null;
+}
+
 // Methode qui renvoie la liste de tous les Chefs de Projets
 exports.findAll = async function (req, res) {
   try {
@@ -18,6 +25,7 @@ exports.findAll = async function (req, res) {
   }
 };
 
+// Methode retourne chefProjet si existe
 exports.findChefById = async function (req, res) {
   try {
     const chefprojet = await ChefProjet.findByPk(req.params.id);
@@ -43,7 +51,7 @@ exports.findProjects = async function (req, res) {
       return res.status(404).send({ message: "Chef de projet non trouvé" });
     }
 
-    res.send(chefprojet.Projets);
+    res.status(200).send(chefprojet.Projets);
   } catch (error) {
     console.log(error);
   }
@@ -110,7 +118,7 @@ exports.updateChefProjet = async function (req, res) {
       return res.status(404).send({ message: "Chef de projet non trouvé" });
     }
     // Mettre à jour le chef de projet
-    const updatedChefProjet = await chefProjet.update(req.body);
+    await chefProjet.update(req.body);
     return res.status(204);
   } catch (error) {
     console.log(error);
