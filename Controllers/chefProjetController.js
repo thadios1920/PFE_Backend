@@ -40,6 +40,19 @@ exports.findChefById = async function (req, res) {
   }
 };
 
+// Ajoute un chefProjet
+exports.addchefProject = async function (req, res) {
+  const { body } = req;
+  try {
+    await ChefProjet.create({ ...body });
+    res.status(201).send("Chef projet created");
+    
+  } catch (error) {
+    res.status(500)
+    console.log(error);
+  }
+};
+
 // Methode qui renvoie la liste des projets pour un chef donné
 exports.findProjects = async function (req, res) {
   try {

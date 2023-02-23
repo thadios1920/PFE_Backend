@@ -20,10 +20,17 @@ app.use(morgan("tiny"));
 // Les routes
 const chefProjetRouter = require("./Routes/chefProjetRouter");
 const projetRouter = require("./Routes/projetRouter");
+const chantierRouter = require("./Routes/chantierRouter");
+const etageRouter = require("./Routes/etageRouter");
+const elementRouter = require("./Routes/elementRouter");
+
 
 // APIs
 app.use("/chefProjets", chefProjetRouter);
 app.use("/projets", projetRouter);
+app.use("/chantiers", chantierRouter);
+app.use("/etages", etageRouter);
+app.use("/elements", elementRouter);
 
 // Connexion a la base de données
 DB.sync()

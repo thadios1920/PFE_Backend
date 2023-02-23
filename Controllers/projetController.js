@@ -64,7 +64,7 @@ exports.updateProject = async function (req, res) {
 };
 
 // Ajoute un projet
-exports.addProject = async function (req, res) {
+exports.addProject = async function (req, res) { 
   const { body } = req;
   try {
     await Projet.create({ ...body });
@@ -84,7 +84,7 @@ exports.getChntierById = async function (req,res) {
     if (chantier) {
       res.status(200).json(chantier);
     } else {
-      res.status(404).json({ message: `Chantier avec id ${chantierId} n'est pas trouvé dans projet avec id ${projetId}` });
+      res.status(404).json({ message: `Chantier avec id ${req.params.chantierId} n'est pas trouvé dans projet avec id ${req.params.projetId}` });
     }
   } catch (error) {
     console.error(error);
