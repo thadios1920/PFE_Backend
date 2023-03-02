@@ -41,7 +41,7 @@ exports.findEtages = async function (req,res) {
       if (!chantier) {
         return res.status(404).send({ message: " Chantier non trouvé !!" });
       }
-      res.status(200).send(chantier.Etage);
+      res.status(200).send(chantier.Etages);
     } catch (error) {
       console.log(error);
     }

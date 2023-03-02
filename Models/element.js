@@ -5,8 +5,11 @@ const Db = require("../db/dbConnect.js")
 
 const {DataTypes} = Sequelize
 
+const Zone = require("../Models/zone")
 
-const Element = Db.define("Element", {
+class Element extends Sequelize.Model {}
+
+Element.init({
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -15,12 +18,31 @@ const Element = Db.define("Element", {
   },
   hauteur: {
     type: DataTypes.DECIMAL,
-    allowNull: false,
+    // allowNull: false,
+  },
+  type: {
+    type: DataTypes.STRING,
+    // allowNull: false,
+  },
+  nom: {
+    type: DataTypes.STRING,
+    // allowNull: false,
+  },
+  matiere: {
+    type: DataTypes.STRING,
+    // allowNull: false,
   },
   largeur: {
     type: DataTypes.DECIMAL,
-    allowNull: true,
+    // allowNull: true,
   },
+},{
+  modelName: "Element",
+  tableName: "Element",
+  sequelize: Db,
 });
+
+Element.hasOne(Zone);
+
 
 module.exports = Element;

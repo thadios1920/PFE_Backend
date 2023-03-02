@@ -6,6 +6,7 @@ const Db = require("../db/dbConnect.js")
 const {DataTypes} = Sequelize
 
 const Etage = require("./etage.js");
+const Tache = require("./tache.js");
 
 const Chantier = Db.define("Chantier", {
   id: {
@@ -35,5 +36,7 @@ const Chantier = Db.define("Chantier", {
 Chantier.hasMany(Etage, {
   onDelete: "CASCADE",
 });
+Chantier.hasMany(Tache, { onDelete: 'CASCADE' });
+
 
 module.exports = Chantier;

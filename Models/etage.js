@@ -6,6 +6,7 @@ const Db = require("../db/dbConnect.js")
 const {DataTypes} = Sequelize
 
 const Element = require("./element.js");
+const Plan = require('./plan.js');
 
 const Etage = Db.define("Etage", {
   id: {
@@ -25,6 +26,9 @@ const Etage = Db.define("Etage", {
 });
 
 Etage.hasMany(Element, {
+  onDelete: "CASCADE",
+});
+Etage.hasOne(Plan, {
   onDelete: "CASCADE",
 });
 

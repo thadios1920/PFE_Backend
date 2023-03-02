@@ -11,4 +11,4 @@ router.put('/:id',projetController.updateProject)
 router.put('/:id/chantiers/:chantierId',projetController.affecterChantier) 
 
 
-module.exports = router
+module.exports = router 

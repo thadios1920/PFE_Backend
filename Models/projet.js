@@ -17,6 +17,7 @@ Projet.init(
     },
     nom: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING },
+    budget: { type: DataTypes.DECIMAL },
     start_date: { type: DataTypes.DATE },
     end_date: { type: DataTypes.DATE },
     lieu: {
