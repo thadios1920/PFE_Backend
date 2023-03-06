@@ -1,5 +1,6 @@
 const Chantier = require("../Models/chantier");
 const Etage = require("../Models/etage");
+const Tache = require("../Models/tache");
 const { model } = require("../db/dbConnect");
 
 // Retourne liste de touts les Chantiers
@@ -16,6 +17,22 @@ exports.findAll = async function (req, res) {
     console.log(error);
   }
 };
+
+exports.getTasks = async function (req,res) {
+  try {
+    const chantier = await Chantier.findByPk(req.params.id, {
+      include: { model: Tache },
+  });
+
+  if (!chantier) {
+      return res.status(404).send({ message: " Chantier non trouvé !!" });
+  }
+  res.status(200).send(chantier.Taches);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server error")
+  }
+}
 
 exports.findById = async function (req,res) {
   try {

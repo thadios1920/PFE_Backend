@@ -7,6 +7,7 @@ require("dotenv/config");
 
 const SERVER_PORT = process.env.SERVER_PORT;
 const SERVER_HOST = process.env.SERVER_HOST;
+const API = process.env.API_URL
 
 // avoir la possibiliter de traiter le contenue JSON de requette
 app.use(express.json());
@@ -28,17 +29,19 @@ const elementRouter = require("./Routes/elementRouter");
 const planRouter = require("./Routes/planRouter");
 const tacheRouter = require("./Routes/tacheRouter");
 const chefChantierRouter = require("./Routes/chefChantierRouter");
+const zoneRouter = require("./Routes/zoneRouter");
 
 
 // APIs
-app.use("/chefProjets", chefProjetRouter);
-app.use("/projets", projetRouter);
-app.use("/chantiers", chantierRouter);
-app.use("/etages", etageRouter);
-app.use("/elements", elementRouter);
-app.use("/plans", planRouter);
-app.use("/taches", tacheRouter);
-app.use("/chefChantiers", chefChantierRouter);
+app.use(`${API}/chefProjets`, chefProjetRouter);
+app.use(`${API}/projets`, projetRouter);
+app.use(`${API}/chantiers`, chantierRouter);
+app.use(`${API}/etages`, etageRouter);
+app.use(`${API}/elements`, elementRouter);
+app.use(`${API}/plans`, planRouter);
+app.use(`${API}/taches`, tacheRouter);
+app.use(`${API}/chefChantiers`, chefChantierRouter);
+app.use(`${API}/zones`, zoneRouter);
 
 
 // Connexion a la base de données

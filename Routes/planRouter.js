@@ -32,10 +32,10 @@ const uploadOptions = multer({ storage: storage });
 
 router.get('/',  planController.findAll)
 router.get('/:id',  planController.findPlanById)
-router.get('/:id/zones',planController.findZones)
-router.get('/:id/zones/:zoneId',planController.getZoneById)
+// router.get('/:id/zones',planController.findZones)
+// router.get('/:id/zones/:zoneId',planController.getZoneById)
 router.post('/',uploadOptions.single('image'), planController.addPlan)
-router.put('/:id/zones/:zoneId',planController.affecterZone) 
+// router.put('/:id/zones/:zoneId',planController.affecterZone) 
 
 
 

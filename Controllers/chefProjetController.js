@@ -1,5 +1,7 @@
 const ChefProjet = require("../Models/chefProjet");
 const Projet = require("../Models/projet");
+const Chantier = require("../Models/chantier");
+const Tache = require("../Models/tache");
 
 // Retourne True si un chef existe
 async function chefExiste(chefProjetID) {
@@ -7,6 +9,32 @@ async function chefExiste(chefProjetID) {
 
   return chefProjet != null;
 }
+
+// exports.getTasks = async function (req,res) {
+//   try {
+//     const chefprojet = await ChefProjet.findByPk(req.params.id);
+
+//     if (!chefprojet) {
+//       return res.status(404).send({ message: "Chef de projet non trouvé" });
+//     }
+//     const projet = await Projet.findByPk(req.params.projetId);
+
+//     if (!projet) {
+//       return res.status(404).send({ message: "Projet non trouvé" });
+//     }
+//     const chantier = await Chantier.findByPk(req.params.chantierId,{
+//       include: { model: Tache },
+//     });
+
+//     if (!chantier) {
+//       return res.status(404).send({ message: "Chantier non trouvé" });
+//     }
+//     res.status(200).send(chantier.Taches)
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("Server error")
+//   }
+// }
 
 // Methode qui renvoie la liste de tous les Chefs de Projets
 exports.findAll = async function (req, res) {

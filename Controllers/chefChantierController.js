@@ -46,16 +46,35 @@ exports.updateChefChantier = async function (req, res) {
         return res.status(200).send({ message: "ChefChantier modifiée avec succès" });
     } catch (error) {
         console.log(error);
+        res.status(500).send("Server Error")
     }
-};  
+};
 
-exports.addChefChantier= async function (req, res) { 
+exports.addChefChantier = async function (req, res) {
     const { body } = req;
     try {
-      await ChefChantier.create({ ...body });
-      res.status(201).send("ChefChantier created");
-      
+        await ChefChantier.create({ ...body });
+        res.status(201).send("ChefChantier created");
+
     } catch (error) {
-      console.log(error);
+        console.log(error);
+        res.status(500).send("Server Error")
+
     }
-  };
+};
+
+exports.findAllTasks = async function (req, res) {
+    try {
+        const chefChantier = await ChefChantier.findByPk(req.params.id, {
+            include: { model: Tache },
+        });
+
+        if (!chefChantier) {
+            return res.status(404).send({ message: " ChefChantier non trouvé !!" });
+        }
+        res.status(200).send(chefChantier.Taches);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error")
+    }
+}

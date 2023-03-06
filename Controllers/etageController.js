@@ -44,7 +44,7 @@ exports.findElements =  async function (req,res) {
       if (!etage) {
         return res.status(404).send({ message: " Etage non trouvé !!" });
       }
-      res.status(200).send(etage.Element);
+      res.status(200).send(etage.Elements);
     } catch (error) {
       console.log(error);
     }
@@ -69,14 +69,15 @@ exports.getElementById = async function (req,res) {
 
 exports.getPlan = async function (req,res) {
   try {
-    const etage = await Etage.findByPk(req.params.id,{
-      include : {model:Plan},
+    const etage = await Etage.findByPk(req.params.id, {
+      include: { model: Plan },
     });
 
     if (!etage) {
-      return res.status(404).send({ message: " Etage non trouvé !!" });
+      return res.status(404).send({ message: "Etage non trouvé" });
     }
-    res.status(200).send(etage);
+
+    res.status(200).send(etage.Plan);
   } catch (error) {
     console.error(error);
       res.status(500).json({ message: 'Server error' });
